@@ -1,0 +1,40 @@
+# NPC Service Dockerfile
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements
+COPY npc_system/requirements.txt /app/npc_system/
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r /app/npc_system/requirements.txt
+RUN pip install uvicorn fastapi python-multipart
+
+# Copy NPC system code
+COPY npc_system/ /app/npc_system/
+
+# Create necessary directories
+RUN mkdir -p /app/npc_system/database
+
+# Set working directory
+WORKDIR /app/npc_system
+
+# Expose port
+EXPOSE 9000
+
+# Environment
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONPATH=/app
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:9000/health || exit 1
+
+# Start NPC service
+CMD ["python", "npc_service.py"]

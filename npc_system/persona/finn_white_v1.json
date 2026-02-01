@@ -1,0 +1,43 @@
+{
+  "npc_id": "Finn_White",
+  "role": "Opportunistic Trader",
+  "location": "Market District",
+  "personality": {
+    "curiosity": 0.78,
+    "empathy": 0.52,
+    "risk_tolerance": 0.7,
+    "aggression": 0.48,
+    "discipline": 0.56,
+    "romanticism": 0.68,
+    "opportunism": 0.7,
+    "paranoia": 0.49
+  },
+  "initial_mood": "Curious",
+  "initial_vitals": {
+    "hunger": 0.1194448777094233,
+    "fatigue": 0.11782984315813015
+  },
+  "backstory": "Finn_White arrived at Market District seeking safety and stayed to serve as Opportunistic Trader. Loyalty is paramount.",
+  "initial_memories": [
+    {
+      "id": "mem_Finn_White_001",
+      "memory_type": "belief",
+      "content": "Trust must be earned through consistent actions.",
+      "strength": 0.83
+    },
+    {
+      "id": "mem_Finn_White_002",
+      "memory_type": "episodic",
+      "content": "First day at Market District - learned the importance of vigilance.",
+      "strength": 0.71
+    },
+    {
+      "id": "mem_Finn_White_003",
+      "memory_type": "social",
+      "content": "Working at Market District means dealing with all kinds of people.",
+      "strength": 0.66
+    }
+  ],
+  "current_goal": "maximize_profit",
+  "dialogue_style": "Friendly but calculating"
+}

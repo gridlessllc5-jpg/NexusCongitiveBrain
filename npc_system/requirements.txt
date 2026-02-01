@@ -1,0 +1,32 @@
+# Fractured Survival - Cognitive NPC System Requirements
+# Adapted for Render / standard Python deployment
+# Uses OpenAI SDK directly instead of emergentintegrations
+
+# Web Framework
+fastapi>=0.110.0
+uvicorn>=0.25.0
+python-multipart>=0.0.9
+httpx>=0.27.0
+
+# Database
+sqlalchemy==2.0.25
+aiosqlite==0.19.0
+motor>=3.3.1
+pymongo>=4.5.0
+
+# Data Validation
+pydantic>=2.0.0
+
+# Utilities
+python-dotenv==1.0.1
+numpy>=1.24.0
+
+# Logging
+rich>=13.0.0
+
+# Voice
+elevenlabs
+
+# LLM - OpenAI SDK (replaces emergentintegrations)
+openai>=1.12.0
+pydub>=0.25.0

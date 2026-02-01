@@ -1,0 +1,85 @@
+# Docker Compose for Fractured Survival Brain
+# Runs both backend and NPC service together
+
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    environment:
+      - MONGO_URL=${MONGO_URL}
+      - DB_NAME=${DB_NAME:-survival-ai-2-base}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ELEVENLABS_API_KEY=${ELEVENLABS_API_KEY}
+      - CORS_ORIGINS=${CORS_ORIGINS:-*}
+      - NPC_SERVICE_URL=http://npc-service:9000
+      - PYTHONPATH=/app
+    depends_on:
+      - npc-service
+    networks:
+      - fractured-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  npc-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.npc
+    ports:
+      - "9000:9000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ELEVENLABS_API_KEY=${ELEVENLABS_API_KEY}
+      - CORS_ORIGINS=${CORS_ORIGINS:-*}
+      - PYTHONPATH=/app
+    volumes:
+      - npc-data:/app/npc_system/database
+    networks:
+      - fractured-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "3000:80"
+    environment:
+      - REACT_APP_BACKEND_URL=http://localhost:8001
+    depends_on:
+      - backend
+    networks:
+      - fractured-network
+    restart: unless-stopped
+
+  # Optional: Cloudflare Tunnel
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    command: tunnel run
+    environment:
+      - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
+    networks:
+      - fractured-network
+    restart: unless-stopped
+    profiles:
+      - cloudflare  # Only run with: docker-compose --profile cloudflare up
+
+networks:
+  fractured-network:
+    driver: bridge
+
+volumes:
+  npc-data:

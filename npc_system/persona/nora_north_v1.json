@@ -1,0 +1,43 @@
+{
+  "npc_id": "Nora_North",
+  "role": "Disciplined Protector",
+  "location": "Patrol Route",
+  "personality": {
+    "curiosity": 0.57,
+    "empathy": 0.38,
+    "risk_tolerance": 0.56,
+    "aggression": 0.47,
+    "discipline": 0.75,
+    "romanticism": 0.44,
+    "opportunism": 0.61,
+    "paranoia": 0.47
+  },
+  "initial_mood": "Neutral",
+  "initial_vitals": {
+    "hunger": 0.3920460256152012,
+    "fatigue": 0.36322371008480303
+  },
+  "backstory": "Experienced Disciplined Protector at Patrol Route. Nora_North has seen both the best and worst of humanity.",
+  "initial_memories": [
+    {
+      "id": "mem_Nora_North_001",
+      "memory_type": "belief",
+      "content": "Trust must be earned through consistent actions.",
+      "strength": 0.74
+    },
+    {
+      "id": "mem_Nora_North_002",
+      "memory_type": "episodic",
+      "content": "First day at Patrol Route - learned the importance of vigilance.",
+      "strength": 0.63
+    },
+    {
+      "id": "mem_Nora_North_003",
+      "memory_type": "social",
+      "content": "Working at Patrol Route means dealing with all kinds of people.",
+      "strength": 0.67
+    }
+  ],
+  "current_goal": "maintain_order",
+  "dialogue_style": "Military formal"
+}

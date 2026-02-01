@@ -1,0 +1,161 @@
+/* ============================================================================
+   Voice Visualizer - AI Speaking Animation
+   Fractured Survival Theme
+   ============================================================================ */
+
+.voice-visualizer {
+  position: relative;
+  width: 100%;
+  background: linear-gradient(180deg, 
+    rgba(13, 13, 13, 0.95) 0%, 
+    rgba(26, 26, 26, 0.98) 50%,
+    rgba(13, 13, 13, 0.95) 100%
+  );
+  border: 1px solid var(--fs-metal-dark, #3d3d3d);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  margin-bottom: 1rem;
+}
+
+.voice-visualizer.active {
+  border-color: var(--fs-rust-orange, #c4682b);
+  box-shadow: 
+    0 0 20px rgba(196, 104, 43, 0.3),
+    0 0 40px rgba(196, 104, 43, 0.1),
+    inset 0 0 30px rgba(196, 104, 43, 0.05);
+}
+
+/* Header with status */
+.visualizer-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid rgba(196, 104, 43, 0.2);
+}
+
+.pulse-dot {
+  width: 10px;
+  height: 10px;
+  background: var(--fs-metal-gray, #6b6b6b);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.voice-visualizer.active .pulse-dot {
+  background: var(--fs-rust-orange, #c4682b);
+  box-shadow: 0 0 10px var(--fs-rust-orange, #c4682b);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.7;
+  }
+}
+
+.visualizer-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--fs-cream-dark, #a89878);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+.voice-visualizer.active .visualizer-label {
+  color: var(--fs-rust-glow, #d4783b);
+}
+
+/* Wave container */
+.wave-container {
+  width: 100%;
+  height: 120px;
+  position: relative;
+  z-index: 1;
+}
+
+.wave-container canvas {
+  display: block;
+}
+
+/* Glow effect overlay */
+.visualizer-glow {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  background: linear-gradient(
+    to top,
+    rgba(196, 104, 43, 0.1) 0%,
+    transparent 100%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.voice-visualizer.active .visualizer-glow {
+  opacity: 1;
+}
+
+/* Scanline effect for retro feel */
+.voice-visualizer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.1) 2px,
+    rgba(0, 0, 0, 0.1) 4px
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Corner decorations */
+.voice-visualizer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-top: 2px solid var(--fs-rust-orange, #c4682b);
+  border-left: 2px solid var(--fs-rust-orange, #c4682b);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 3;
+}
+
+.voice-visualizer.active::before {
+  opacity: 0.7;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .wave-container {
+    height: 80px;
+  }
+  
+  .visualizer-header {
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .visualizer-label {
+    font-size: 0.75rem;
+  }
+}

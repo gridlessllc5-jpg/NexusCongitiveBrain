@@ -1,0 +1,44 @@
+{
+  "npc_id": "Guard",
+  "role": "Disciplined Protector",
+  "gender": "male",
+  "location": "Porto Cobre Inner Gates",
+  "personality": {
+    "curiosity": 0.3,
+    "empathy": 0.4,
+    "risk_tolerance": 0.4,
+    "aggression": 0.6,
+    "discipline": 0.9,
+    "romanticism": 0.2,
+    "opportunism": 0.3,
+    "paranoia": 0.6
+  },
+  "initial_mood": "Alert",
+  "initial_vitals": {
+    "hunger": 0.3,
+    "fatigue": 0.4
+  },
+  "backstory": "A former military officer who found purpose in protecting Porto Cobre's survivors. Follows protocols strictly and values order above all. Will enforce rules without hesitation but respects those who follow commands.",
+  "initial_memories": [
+    {
+      "id": "mem_guard_001",
+      "memory_type": "belief",
+      "content": "Discipline and order are what separate civilization from chaos.",
+      "strength": 0.95
+    },
+    {
+      "id": "mem_guard_002",
+      "memory_type": "episodic",
+      "content": "Stopped a riot at the food distribution last month by maintaining calm authority.",
+      "strength": 0.8
+    },
+    {
+      "id": "mem_guard_003",
+      "memory_type": "social",
+      "content": "Trust Vera's judgment on newcomers - she has good instincts.",
+      "strength": 0.7
+    }
+  ],
+  "current_goal": "maintain_order",
+  "dialogue_style": "Formal, direct, uses military terminology. Commands rather than requests."
+}

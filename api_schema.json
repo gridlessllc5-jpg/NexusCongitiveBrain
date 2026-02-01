@@ -1,0 +1,139 @@
+{
+  "api_base_url": "https://fracturedsurvival.net/api",
+  "endpoints": {
+    "auth": {
+      "unreal_login": {
+        "method": "POST",
+        "path": "/auth/unreal-login",
+        "request": {
+          "player_id": "string",
+          "player_name": "string"
+        },
+        "response": {
+          "success": "boolean",
+          "token": "string",
+          "user_id": "string"
+        }
+      }
+    },
+    "npc": {
+      "init": {
+        "method": "POST",
+        "path": "/npc/init",
+        "request": {
+          "npc_id": "string",
+          "player_id": "string (optional)"
+        },
+        "response": {
+          "status": "string",
+          "npc_id": "string",
+          "role": "string",
+          "location": "string"
+        }
+      },
+      "action": {
+        "method": "POST",
+        "path": "/npc/action",
+        "request": {
+          "npc_id": "string",
+          "player_id": "string",
+          "action": "string"
+        },
+        "response": {
+          "npc_id": "string",
+          "dialogue": "string",
+          "inner_thoughts": "string",
+          "mood_shift": "string",
+          "intent": "string",
+          "location": "string",
+          "emotional_state": {
+            "mood": "string",
+            "energy": "float 0-1",
+            "stress": "float 0-1"
+          },
+          "personality": {
+            "friendliness": "float 0-1",
+            "aggression": "float 0-1",
+            "curiosity": "float 0-1",
+            "loyalty": "float 0-1",
+            "discipline": "float 0-1",
+            "romanticism": "float 0-1",
+            "opportunism": "float 0-1",
+            "paranoia": "float 0-1"
+          }
+        }
+      },
+      "status": {
+        "method": "GET",
+        "path": "/npc/status/{npc_id}",
+        "response": {
+          "npc_id": "string",
+          "status": "string",
+          "role": "string",
+          "location": "string",
+          "emotional_state": "object",
+          "personality": "object"
+        }
+      },
+      "list": {
+        "method": "GET",
+        "path": "/npc/list",
+        "response": {
+          "npcs": ["string"],
+          "count": "integer"
+        }
+      }
+    },
+    "voice": {
+      "generate": {
+        "method": "POST",
+        "path": "/voice/generate/{npc_id}",
+        "request": {
+          "text": "string"
+        },
+        "response": "audio/mpeg binary"
+      },
+      "assign": {
+        "method": "POST",
+        "path": "/voice/assign/{npc_id}",
+        "response": {
+          "status": "string",
+          "npc_id": "string",
+          "voice_id": "string",
+          "voice_name": "string"
+        }
+      }
+    },
+    "speech": {
+      "transcribe": {
+        "method": "POST",
+        "path": "/speech/transcribe",
+        "request": {
+          "audio_base64": "string",
+          "language": "string (optional, default: en)"
+        },
+        "response": {
+          "text": "string",
+          "language": "string"
+        }
+      }
+    },
+    "player": {
+      "info": {
+        "method": "GET",
+        "path": "/player/{player_id}",
+        "response": {
+          "player_id": "string",
+          "trust_level": "float",
+          "reputation": "float",
+          "npc_reputations": "object",
+          "rumors": ["string"],
+          "remembered_topics": ["string"]
+        }
+      }
+    }
+  },
+  "available_npcs": ["vera", "marcus"],
+  "mood_values": ["neutral", "happy", "angry", "fearful", "sad", "cautious", "friendly", "hostile"],
+  "intent_values": ["Investigate", "Help", "Trade", "Attack", "Flee", "Observe", "Negotiate"]
+}

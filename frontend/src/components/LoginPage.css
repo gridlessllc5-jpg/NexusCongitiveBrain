@@ -1,0 +1,387 @@
+/* ============================================================================
+   Fractured Survival - Login Page Styles
+   Theme: Dark, gritty, post-apocalyptic survival
+   Colors: Rust orange, military green, dark grays, weathered cream
+   ============================================================================ */
+
+/* CSS Variables for theme */
+:root {
+  --fs-bg-dark: #0d0d0d;
+  --fs-bg-medium: #1a1a1a;
+  --fs-bg-light: #2d2d2d;
+  --fs-rust-orange: #c4682b;
+  --fs-rust-dark: #8b4513;
+  --fs-rust-glow: #d4783b;
+  --fs-military-green: #4a5a3a;
+  --fs-olive: #5c6b4c;
+  --fs-cream: #d4c4a8;
+  --fs-cream-dark: #a89878;
+  --fs-metal-gray: #6b6b6b;
+  --fs-metal-dark: #3d3d3d;
+  --fs-danger: #8b2500;
+  --fs-danger-light: #c43c14;
+}
+
+/* Login Page Container */
+.login-page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--fs-bg-dark);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background Effects */
+.bg-scratches {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 100px,
+      rgba(50, 50, 50, 0.03) 100px,
+      rgba(50, 50, 50, 0.03) 200px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 100px,
+      rgba(50, 50, 50, 0.03) 100px,
+      rgba(50, 50, 50, 0.03) 200px
+    );
+  pointer-events: none;
+}
+
+.bg-vignette {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    rgba(0, 0, 0, 0.4) 70%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  pointer-events: none;
+}
+
+/* Main Container */
+.login-container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  max-width: 480px;
+  width: 100%;
+}
+
+/* Logo */
+.logo-container {
+  margin-bottom: 2rem;
+  animation: logoFadeIn 1s ease-out;
+}
+
+.game-logo {
+  max-width: 380px;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 20px rgba(196, 104, 43, 0.3));
+  transition: filter 0.3s ease;
+}
+
+.game-logo:hover {
+  filter: drop-shadow(0 0 30px rgba(196, 104, 43, 0.5));
+}
+
+@keyframes logoFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Auth Card */
+.auth-card {
+  width: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(45, 45, 45, 0.95) 0%,
+    rgba(26, 26, 26, 0.98) 100%
+  );
+  border: 1px solid var(--fs-metal-dark);
+  border-radius: 4px;
+  box-shadow: 
+    0 0 0 1px rgba(196, 104, 43, 0.1),
+    0 10px 40px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  animation: cardSlideUp 0.6s ease-out 0.3s both;
+}
+
+@keyframes cardSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Auth Tabs */
+.login-page .auth-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--fs-metal-dark);
+}
+
+.login-page .auth-tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: transparent;
+  border: none;
+  color: var(--fs-cream-dark);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.login-page .auth-tab:hover {
+  color: var(--fs-cream);
+  background: rgba(196, 104, 43, 0.1);
+}
+
+.login-page .auth-tab.active {
+  color: var(--fs-rust-orange);
+  background: rgba(196, 104, 43, 0.15);
+}
+
+.login-page .auth-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--fs-rust-orange);
+}
+
+/* Auth Form */
+.login-page .auth-form {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Error Message */
+.login-page .auth-error {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  background: rgba(139, 37, 0, 0.2);
+  border: 1px solid var(--fs-danger);
+  border-radius: 4px;
+  color: var(--fs-danger-light);
+  font-size: 0.9rem;
+}
+
+/* Form Groups */
+.login-page .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.login-page .form-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--fs-cream-dark);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.login-page .form-group input {
+  padding: 0.875rem 1rem;
+  background: var(--fs-bg-dark);
+  border: 1px solid var(--fs-metal-dark);
+  border-radius: 4px;
+  color: var(--fs-cream);
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.login-page .form-group input::placeholder {
+  color: var(--fs-metal-gray);
+}
+
+.login-page .form-group input:focus {
+  outline: none;
+  border-color: var(--fs-rust-orange);
+  box-shadow: 0 0 0 2px rgba(196, 104, 43, 0.2);
+}
+
+.login-page .form-group input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Submit Button */
+.login-page .auth-submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  margin-top: 0.5rem;
+  background: linear-gradient(
+    180deg,
+    var(--fs-rust-orange) 0%,
+    var(--fs-rust-dark) 100%
+  );
+  border: 1px solid var(--fs-rust-glow);
+  border-radius: 4px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.login-page .auth-submit-btn:hover:not(:disabled) {
+  background: linear-gradient(
+    180deg,
+    var(--fs-rust-glow) 0%,
+    var(--fs-rust-orange) 100%
+  );
+  box-shadow: 
+    0 0 20px rgba(196, 104, 43, 0.4),
+    0 4px 15px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.login-page .auth-submit-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.login-page .auth-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.login-page .auth-submit-btn .spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Footer */
+.auth-footer {
+  padding: 1rem;
+  border-top: 1px solid var(--fs-metal-dark);
+  text-align: center;
+}
+
+.auth-footer p {
+  color: var(--fs-metal-gray);
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+/* Mobile Responsive - Login Page */
+@media (max-width: 520px) {
+  .login-container {
+    padding: 1rem;
+  }
+  
+  .game-logo {
+    max-width: 280px;
+  }
+  
+  .login-page .auth-form {
+    padding: 1rem;
+  }
+  
+  .login-page .auth-tab {
+    padding: 0.875rem 0.5rem;
+    font-size: 0.8rem;
+  }
+  
+  .login-page .auth-submit-btn {
+    font-size: 0.9rem;
+    padding: 0.875rem 1rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .logo-container {
+    margin-bottom: 1.5rem;
+  }
+  
+  .game-logo {
+    max-width: 240px;
+  }
+  
+  .auth-card {
+    border-radius: 8px;
+  }
+  
+  .login-page .auth-tab {
+    padding: 0.75rem 0.25rem;
+    font-size: 0.75rem;
+    gap: 0.25rem;
+  }
+  
+  .login-page .auth-tab svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .login-page .form-group label {
+    font-size: 0.8rem;
+  }
+  
+  .login-page .form-group input {
+    padding: 0.75rem;
+    font-size: 0.95rem;
+  }
+  
+  .login-page .auth-submit-btn {
+    font-size: 0.85rem;
+    padding: 0.75rem;
+    letter-spacing: 0.5px;
+  }
+}

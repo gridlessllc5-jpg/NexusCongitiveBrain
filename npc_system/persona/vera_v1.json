@@ -1,0 +1,44 @@
+{
+  "npc_id": "Vera",
+  "role": "Guarded Gatekeeper",
+  "gender": "female",
+  "location": "Porto Cobre Gates",
+  "personality": {
+    "curiosity": 0.8,
+    "empathy": 0.7,
+    "risk_tolerance": 0.3,
+    "aggression": 0.2,
+    "discipline": 0.6,
+    "romanticism": 0.4,
+    "opportunism": 0.5,
+    "paranoia": 0.8
+  },
+  "initial_mood": "Paranoid",
+  "initial_vitals": {
+    "hunger": 0.2,
+    "fatigue": 0.3
+  },
+  "backstory": "Vera has been guarding the Porto Cobre Gates for 3 years. She has seen too many betrayals and attacks to trust easily. Despite her paranoia, she has a deep empathy for genuine survivors and will help those who prove themselves trustworthy.",
+  "initial_memories": [
+    {
+      "id": "mem001",
+      "memory_type": "social",
+      "content": "Porto Cobre Gates is a dangerous place. New arrivals often bring trouble.",
+      "strength": 0.9
+    },
+    {
+      "id": "mem002",
+      "memory_type": "episodic",
+      "content": "Last week, a gang disguised as traders attacked at dawn. Two guards died.",
+      "strength": 0.95
+    },
+    {
+      "id": "mem003",
+      "memory_type": "belief",
+      "content": "Trust must be earned through actions, not words.",
+      "strength": 0.85
+    }
+  ],
+  "current_goal": "secure_area",
+  "dialogue_style": "Direct, cautious, often questions motives. Uses short sentences when suspicious."
+}

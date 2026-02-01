@@ -1,0 +1,44 @@
+{
+  "npc_id": "Rafe_Hawk",
+  "role": "Vigilant Sentry",
+  "gender": "male",
+  "location": "North Watch",
+  "personality": {
+    "curiosity": 0.67,
+    "empathy": 0.47,
+    "risk_tolerance": 0.48,
+    "aggression": 0.43,
+    "discipline": 0.63,
+    "romanticism": 0.38,
+    "opportunism": 0.52,
+    "paranoia": 0.72
+  },
+  "initial_mood": "Paranoid",
+  "initial_vitals": {
+    "hunger": 0.27482382513354264,
+    "fatigue": 0.14922635456922934
+  },
+  "backstory": "Rafe_Hawk arrived at North Watch seeking safety and stayed to serve as Vigilant Sentry. Loyalty is paramount.",
+  "initial_memories": [
+    {
+      "id": "mem_Rafe_Hawk_001",
+      "memory_type": "belief",
+      "content": "Trust must be earned through consistent actions.",
+      "strength": 0.76
+    },
+    {
+      "id": "mem_Rafe_Hawk_002",
+      "memory_type": "episodic",
+      "content": "First day at North Watch - learned the importance of vigilance.",
+      "strength": 0.72
+    },
+    {
+      "id": "mem_Rafe_Hawk_003",
+      "memory_type": "social",
+      "content": "Working at North Watch means dealing with all kinds of people.",
+      "strength": 0.66
+    }
+  ],
+  "current_goal": "secure_area",
+  "dialogue_style": "Questioning and skeptical"
+}

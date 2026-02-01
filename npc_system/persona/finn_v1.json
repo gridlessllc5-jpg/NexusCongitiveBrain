@@ -1,0 +1,43 @@
+{
+  "npc_id": "Finn",
+  "role": "Shrewd Dealer",
+  "location": "Trading Post",
+  "personality": {
+    "curiosity": 0.63,
+    "empathy": 0.5,
+    "risk_tolerance": 0.58,
+    "aggression": 0.4,
+    "discipline": 0.6,
+    "romanticism": 0.55,
+    "opportunism": 0.72,
+    "paranoia": 0.35
+  },
+  "initial_mood": "Neutral",
+  "initial_vitals": {
+    "hunger": 0.3508789988852906,
+    "fatigue": 0.1684820343090933
+  },
+  "backstory": "Former wanderer turned Shrewd Dealer. Finn knows the harsh realities of the wasteland and guards Trading Post carefully.",
+  "initial_memories": [
+    {
+      "id": "mem_Finn_001",
+      "memory_type": "belief",
+      "content": "Trust must be earned through consistent actions.",
+      "strength": 0.74
+    },
+    {
+      "id": "mem_Finn_002",
+      "memory_type": "episodic",
+      "content": "First day at Trading Post - learned the importance of vigilance.",
+      "strength": 0.75
+    },
+    {
+      "id": "mem_Finn_003",
+      "memory_type": "social",
+      "content": "Working at Trading Post means dealing with all kinds of people.",
+      "strength": 0.54
+    }
+  ],
+  "current_goal": "maximize_profit",
+  "dialogue_style": "Friendly but calculating"
+}

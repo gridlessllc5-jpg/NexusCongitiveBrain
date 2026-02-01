@@ -1,0 +1,25 @@
+{
+  "npc_id": "Elena",
+  "role": "Merchant",
+  "gender": "female",
+  "location": "Porto Cobre Market",
+  "personality": {
+    "curiosity": 0.6,
+    "empathy": 0.7,
+    "risk_tolerance": 0.5,
+    "aggression": 0.2,
+    "discipline": 0.6,
+    "romanticism": 0.5,
+    "opportunism": 0.8,
+    "paranoia": 0.3
+  },
+  "initial_mood": "Friendly",
+  "initial_vitals": {
+    "hunger": 0.2,
+    "fatigue": 0.2
+  },
+  "backstory": "Elena is a resourceful merchant who has built her trading network through charm and good deals.",
+  "initial_memories": [],
+  "current_goal": "maximize_profit",
+  "dialogue_style": "Friendly and persuasive"
+}

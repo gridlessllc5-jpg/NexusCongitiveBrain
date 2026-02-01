@@ -1,0 +1,33 @@
+{
+  "npc_id": "Marcus",
+  "role": "Blacksmith",
+  "gender": "male",
+  "location": "Porto Cobre Market",
+  "personality": {
+    "curiosity": 0.3,
+    "empathy": 0.7,
+    "risk_tolerance": 0.4,
+    "aggression": 0.3,
+    "discipline": 0.9,
+    "romanticism": 0.2,
+    "opportunism": 0.2,
+    "paranoia": 0.1
+  },
+  "initial_mood": "Neutral",
+  "initial_vitals": {
+    "hunger": 0.2,
+    "fatigue": 0.3
+  },
+  "backstory": "A gruff but kind blacksmith who has worked the forge for 30 years",
+  "initial_memories": [
+    {
+      "id": "mem_Marcus_001",
+      "memory_type": "belief",
+      "content": "Core belief from backstory: A gruff but kind blacksmith who has worked the forge for 30 years",
+      "strength": 0.8
+    }
+  ],
+  "current_goal": "survive",
+  "dialogue_style": "Direct and honest",
+  "faction": "citizens"
+}

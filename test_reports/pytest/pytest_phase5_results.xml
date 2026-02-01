@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="17" skipped="0" tests="17" time="962.409" timestamp="2026-01-30T01:05:47.271710+00:00" hostname="agent-env-2020f24b-1b8c-4fae-9060-8305df6648f8"><testcase classname="backend.tests.test_phase5_scaling.TestScalingStats" name="test_get_scaling_stats" time="30.112"><failure message="assert 520 == 200&#10; +  where 520 = &lt;Response [520]&gt;.status_code">backend/tests/test_phase5_scaling.py:20: in test_get_scaling_stats
+    assert response.status_code == 200
+E   assert 520 == 200
+E    +  where 520 = &lt;Response [520]&gt;.status_code</failure></testcase><testcase classname="backend.tests.test_phase5_scaling.TestCacheStats" name="test_get_cache_stats" time="30.121"><failure message="assert 520 == 200&#10; +  where 520 = &lt;Response [520]&gt;.status_code">backend/tests/test_phase5_scaling.py:45: in test_get_cache_stats
+    assert response.status_code == 200
+E   assert 520 == 200
+E    +  where 520 = &lt;Response [520]&gt;.status_code</failure></testcase><testcase classname="backend.tests.test_phase5_scaling.TestOptimization" name="test_trigger_optimization" time="60.081"><failure message="assert 520 == 200&#10; +  where 520 = &lt;Response [520]&gt;.status_code">backend/tests/test_phase5_scaling.py:67: in test_trigger_optimization
+    assert response.status_code == 200
+E   assert 520 == 200
+E    +  where 520 = &lt;Response [520]&gt;.status_code</failure></testcase><testcase classname="backend.tests.test_phase5_scaling.TestBatchInit" name="test_batch_init_npcs" time="60.081"><failure message="assert 520 == 200&#10; +  where 520 = &lt;Response [520]&gt;.status_code">backend/tests/test_phase5_scaling.py:92: in test_batch_init_npcs
+    assert response.status_code == 200
+E   assert 520 == 200
+E    +  where 520 = &lt;Response [520]&gt;.status_code</failure></testcase><testcase classname="backend.tests.test_phase5_scaling.TestBatchInit" name="test_batch_init_already_exists" time="120.186"><failure message="assert 520 == 200&#10; +  where 520 = &lt;Response [520]&gt;.status_code">backend/tests/test_phase5_scaling.py:126: in test_batch_init_already_exists
+    assert response.status_code == 200
+E   assert 520 == 200
+E    +  where 520 = &lt;Response [520]&gt;.status_code</failure></testcase><testcase classname="backend.tests.test_phase5_scaling.TestBatchInteract" name="test_batch_interact" time="120.164"><failure message="assert 520 == 200&#10; +  where 520 = &lt;Response [520]&gt;.status_code">backend/tests/test_phase5_scaling.py:157: in test_batch_interact
+    assert response.status_code == 200
+E   assert 520 == 200
+E    +  where 520 = &lt;Response [520]&gt;.status_code</failure></testcase><testcase classname="backend.tests.test_phase5_scaling.TestPaginatedNPCs" name="test_get_npcs_paginated" time="30.090"><failure message="assert 520 == 200&#10; +  where 520 = &lt;Response [520]&gt;.status_code">backend/tests/test_phase5_scaling.py:181: in test_get_npcs_paginated
+    assert response.status_code == 200
+E   assert 520 == 200
+E    +  where 520 = &lt;Response [520]&gt;.status_code</failure></testcase><testcase classname="backend.tests.test_phase5_scaling.TestPaginatedNPCs" name="test_npcs_paginated_with_tier_filter" time="30.080"><failure message="assert 520 == 200&#10; +  where 520 = &lt;Response [520]&gt;.status_code">backend/tests/test_phase5_scaling.py:203: in test_npcs_paginated_with_tier_filter
+    assert response.status_code == 200
+E   assert 520 == 200
+E    +  where 520 = &lt;Response [520]&gt;.status_code</failure></testcase><testcase classname="backend.tests.test_phase5_scaling.TestPaginatedPlayers" name="test_get_players_paginated" time="30.082"><failure message="assert 520 == 200&#10; +  where 520 = &lt;Response [520]&gt;.status_code">backend/tests/test_phase5_scaling.py:222: in test_get_players_paginated
+    assert response.status_code == 200
+E   assert 520 == 200
+E    +  where 520 = &lt;Response [520]&gt;.status_code</failure></testcase><testcase classname="backend.tests.test_phase5_scaling.TestPaginatedQuests" name="test_get_quests_paginated" time="30.191"><failure message="assert 520 == 200&#10; +  where 520 = &lt;Response [520]&gt;.status_code">backend/tests/test_phase5_scaling.py:256: in test_get_quests_paginated
+    assert response.status_code == 200
+E   assert 520 == 200
+E    +  where 520 = &lt;Response [520]&gt;.status_code</failure></testcase><testcase classname="backend.tests.test_phase5_scaling.TestPaginatedQuests" name="test_quests_paginated_with_status_filter" time="30.095"><failure message="assert 520 == 200&#10; +  where 520 = &lt;Response [520]&gt;.status_code">backend/tests/test_phase5_scaling.py:287: in test_quests_paginated_with_status_filter
+    assert response.status_code == 200
+E   assert 520 == 200
+E    +  where 520 = &lt;Response [520]&gt;.status_code</failure></testcase><testcase classname="backend.tests.test_phase5_scaling.TestZoneTick" name="test_zone_tick" time="30.080"><failure message="assert 520 == 200&#10; +  where 520 = &lt;Response [520]&gt;.status_code">backend/tests/test_phase5_scaling.py:303: in test_zone_tick
+    assert response.status_code == 200
+E   assert 520 == 200
+E    +  where 520 = &lt;Response [520]&gt;.status_code</failure></testcase><testcase classname="backend.tests.test_phase5_scaling.TestZoneRegister" name="test_zone_register" time="60.198"><failure message="assert 520 == 200&#10; +  where 520 = &lt;Response [520]&gt;.status_code">backend/tests/test_phase5_scaling.py:331: in test_zone_register
+    assert response.status_code == 200
+E   assert 520 == 200
+E    +  where 520 = &lt;Response [520]&gt;.status_code</failure></testcase><testcase classname="backend.tests.test_phase5_scaling.TestZoneRegister" name="test_zone_register_nonexistent_npc" time="30.086"><failure message="assert 520 in [404, 500]&#10; +  where 520 = &lt;Response [520]&gt;.status_code">backend/tests/test_phase5_scaling.py:351: in test_zone_register_nonexistent_npc
+    assert response.status_code in [404, 500]
+E   assert 520 in [404, 500]
+E    +  where 520 = &lt;Response [520]&gt;.status_code</failure></testcase><testcase classname="backend.tests.test_phase5_scaling.TestBulkNPCData" name="test_get_bulk_npc_data" time="90.202"><failure message="assert 520 == 200&#10; +  where 520 = &lt;Response [520]&gt;.status_code">backend/tests/test_phase5_scaling.py:369: in test_get_bulk_npc_data
+    assert response.status_code == 200
+E   assert 520 == 200
+E    +  where 520 = &lt;Response [520]&gt;.status_code</failure></testcase><testcase classname="backend.tests.test_phase5_scaling.TestTierDistribution" name="test_tier_distribution_in_stats" time="30.081"><failure message="assert 520 == 200&#10; +  where 520 = &lt;Response [520]&gt;.status_code">backend/tests/test_phase5_scaling.py:395: in test_tier_distribution_in_stats
+    assert response.status_code == 200
+E   assert 520 == 200
+E    +  where 520 = &lt;Response [520]&gt;.status_code</failure></testcase><testcase classname="backend.tests.test_phase5_scaling.TestPerformanceMetrics" name="test_performance_metrics_in_stats" time="150.293"><failure message="assert 520 == 200&#10; +  where 520 = &lt;Response [520]&gt;.status_code">backend/tests/test_phase5_scaling.py:428: in test_performance_metrics_in_stats
+    assert response.status_code == 200
+E   assert 520 == 200
+E    +  where 520 = &lt;Response [520]&gt;.status_code</failure></testcase></testsuite></testsuites>

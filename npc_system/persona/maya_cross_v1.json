@@ -1,0 +1,43 @@
+{
+  "npc_id": "Maya_Cross",
+  "role": "Disciplined Protector",
+  "location": "Barracks",
+  "personality": {
+    "curiosity": 0.54,
+    "empathy": 0.62,
+    "risk_tolerance": 0.65,
+    "aggression": 0.41,
+    "discipline": 0.82,
+    "romanticism": 0.35,
+    "opportunism": 0.41,
+    "paranoia": 0.48
+  },
+  "initial_mood": "Neutral",
+  "initial_vitals": {
+    "hunger": 0.324372793419759,
+    "fatigue": 0.3250908801535563
+  },
+  "backstory": "A survivor who found purpose as a Disciplined Protector. Maya_Cross protects Barracks with unwavering dedication.",
+  "initial_memories": [
+    {
+      "id": "mem_Maya_Cross_001",
+      "memory_type": "belief",
+      "content": "Trust must be earned through consistent actions.",
+      "strength": 0.76
+    },
+    {
+      "id": "mem_Maya_Cross_002",
+      "memory_type": "episodic",
+      "content": "First day at Barracks - learned the importance of vigilance.",
+      "strength": 0.62
+    },
+    {
+      "id": "mem_Maya_Cross_003",
+      "memory_type": "social",
+      "content": "Working at Barracks means dealing with all kinds of people.",
+      "strength": 0.63
+    }
+  ],
+  "current_goal": "maintain_order",
+  "dialogue_style": "Professional and direct"
+}

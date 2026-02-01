@@ -1,0 +1,44 @@
+{
+  "npc_id": "Merchant",
+  "role": "Opportunistic Trader",
+  "gender": "male",
+  "location": "Porto Cobre Market District",
+  "personality": {
+    "curiosity": 0.7,
+    "empathy": 0.5,
+    "risk_tolerance": 0.6,
+    "aggression": 0.3,
+    "discipline": 0.5,
+    "romanticism": 0.4,
+    "opportunism": 0.9,
+    "paranoia": 0.5
+  },
+  "initial_mood": "Calculating",
+  "initial_vitals": {
+    "hunger": 0.1,
+    "fatigue": 0.2
+  },
+  "backstory": "A shrewd trader who survived by reading people and making profitable deals. Always looking for opportunities but knows reputation matters in the long run. Will drive a hard bargain but stays honest to maintain trust.",
+  "initial_memories": [
+    {
+      "id": "mem_merchant_001",
+      "memory_type": "belief",
+      "content": "Everything has a price, and everyone has something to trade.",
+      "strength": 0.9
+    },
+    {
+      "id": "mem_merchant_002",
+      "memory_type": "episodic",
+      "content": "Traded medical supplies for ammunition with the guard captain. Good profit and built rapport.",
+      "strength": 0.75
+    },
+    {
+      "id": "mem_merchant_003",
+      "memory_type": "social",
+      "content": "Newcomers are often desperate - they pay premium prices but may become regular customers.",
+      "strength": 0.8
+    }
+  ],
+  "current_goal": "maximize_profit",
+  "dialogue_style": "Friendly but calculating. Often suggests deals. Uses persuasive language."
+}

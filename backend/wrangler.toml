@@ -1,0 +1,46 @@
+name = "fractured-survival-api"
+main = "worker.py"
+compatibility_date = "2024-01-01"
+workers_dev = true
+
+# Python Workers (Beta)
+[compatibility_flags]
+python_workers = true
+
+# Environment Variables - Set in Cloudflare Dashboard or wrangler.toml
+[vars]
+CORS_ORIGINS = "*"
+DB_NAME = "survival-ai-2-base"
+ENABLE_HEALTH_CHECK = "true"
+
+# Secrets - Set via: wrangler secret put <SECRET_NAME>
+# MONGO_URL - MongoDB connection string
+# OPENAI_API_KEY - OpenAI API key (replaces EMERGENT_LLM_KEY)
+# ELEVENLABS_API_KEY - ElevenLabs voice API key
+
+# D1 Database (optional - can use instead of MongoDB for simpler data)
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "fractured-survival"
+# database_id = "your-database-id"
+
+# KV Namespace for caching
+# [[kv_namespaces]]
+# binding = "CACHE"
+# id = "your-kv-namespace-id"
+
+# Durable Objects for WebSocket state
+# [[durable_objects.bindings]]
+# name = "WEBSOCKET_DO"
+# class_name = "WebSocketDurableObject"
+
+[build]
+command = ""
+
+# Production environment
+[env.production]
+vars = { ENVIRONMENT = "production" }
+
+# Staging environment  
+[env.staging]
+vars = { ENVIRONMENT = "staging" }

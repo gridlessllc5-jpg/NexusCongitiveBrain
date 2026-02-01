@@ -1,0 +1,43 @@
+{
+  "npc_id": "Silas_White",
+  "role": "Opportunistic Trader",
+  "location": "Black Market",
+  "personality": {
+    "curiosity": 0.77,
+    "empathy": 0.5,
+    "risk_tolerance": 0.65,
+    "aggression": 0.6,
+    "discipline": 0.64,
+    "romanticism": 0.31,
+    "opportunism": 0.94,
+    "paranoia": 0.37
+  },
+  "initial_mood": "Curious",
+  "initial_vitals": {
+    "hunger": 0.2899155425563321,
+    "fatigue": 0.1384064184966599
+  },
+  "backstory": "Former wanderer turned Opportunistic Trader. Silas_White knows the harsh realities of the wasteland and guards Black Market carefully.",
+  "initial_memories": [
+    {
+      "id": "mem_Silas_White_001",
+      "memory_type": "belief",
+      "content": "Trust must be earned through consistent actions.",
+      "strength": 0.87
+    },
+    {
+      "id": "mem_Silas_White_002",
+      "memory_type": "episodic",
+      "content": "First day at Black Market - learned the importance of vigilance.",
+      "strength": 0.64
+    },
+    {
+      "id": "mem_Silas_White_003",
+      "memory_type": "social",
+      "content": "Working at Black Market means dealing with all kinds of people.",
+      "strength": 0.56
+    }
+  ],
+  "current_goal": "maximize_profit",
+  "dialogue_style": "Friendly but calculating"
+}

@@ -1,0 +1,43 @@
+{
+  "npc_id": "Silas_Black",
+  "role": "Cunning Broker",
+  "location": "Market District",
+  "personality": {
+    "curiosity": 0.62,
+    "empathy": 0.37,
+    "risk_tolerance": 0.59,
+    "aggression": 0.54,
+    "discipline": 0.54,
+    "romanticism": 0.59,
+    "opportunism": 0.87,
+    "paranoia": 0.36
+  },
+  "initial_mood": "Neutral",
+  "initial_vitals": {
+    "hunger": 0.33633709353036323,
+    "fatigue": 0.16275660996610491
+  },
+  "backstory": "A survivor who found purpose as a Cunning Broker. Silas_Black protects Market District with unwavering dedication.",
+  "initial_memories": [
+    {
+      "id": "mem_Silas_Black_001",
+      "memory_type": "belief",
+      "content": "Trust must be earned through consistent actions.",
+      "strength": 0.89
+    },
+    {
+      "id": "mem_Silas_Black_002",
+      "memory_type": "episodic",
+      "content": "First day at Market District - learned the importance of vigilance.",
+      "strength": 0.62
+    },
+    {
+      "id": "mem_Silas_Black_003",
+      "memory_type": "social",
+      "content": "Working at Market District means dealing with all kinds of people.",
+      "strength": 0.63
+    }
+  ],
+  "current_goal": "maximize_profit",
+  "dialogue_style": "Persuasive"
+}

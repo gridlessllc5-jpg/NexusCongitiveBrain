@@ -1,0 +1,44 @@
+{
+  "npc_id": "Rafe_Stone",
+  "role": "Hopeful Settler",
+  "gender": "male",
+  "location": "Residential Area",
+  "personality": {
+    "curiosity": 0.25,
+    "empathy": 0.52,
+    "risk_tolerance": 0.52,
+    "aggression": 0.56,
+    "discipline": 0.54,
+    "romanticism": 0.52,
+    "opportunism": 0.27,
+    "paranoia": 0.6
+  },
+  "initial_mood": "Neutral",
+  "initial_vitals": {
+    "hunger": 0.2746547107994164,
+    "fatigue": 0.3797334257865318
+  },
+  "backstory": "A survivor who found purpose as a Hopeful Settler. Rafe_Stone protects Residential Area with unwavering dedication.",
+  "initial_memories": [
+    {
+      "id": "mem_Rafe_Stone_001",
+      "memory_type": "belief",
+      "content": "Trust must be earned through consistent actions.",
+      "strength": 0.73
+    },
+    {
+      "id": "mem_Rafe_Stone_002",
+      "memory_type": "episodic",
+      "content": "First day at Residential Area - learned the importance of vigilance.",
+      "strength": 0.62
+    },
+    {
+      "id": "mem_Rafe_Stone_003",
+      "memory_type": "social",
+      "content": "Working at Residential Area means dealing with all kinds of people.",
+      "strength": 0.53
+    }
+  ],
+  "current_goal": "survive",
+  "dialogue_style": "Nervous and careful"
+}
