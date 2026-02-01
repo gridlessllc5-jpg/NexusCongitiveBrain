@@ -44,3 +44,23 @@ services:
         sync: false
       - key: DB_NAME
         value: fractured_survival
+
+  # Frontend Dashboard (React)
+  - type: web
+    name: fractured-survival-dashboard
+    runtime: static
+    plan: free
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: build
+    envVars:
+      - key: REACT_APP_BACKEND_URL
+        value: https://fractured-survival-backend.onrender.com
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: no-cache
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
