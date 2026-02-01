@@ -1,31 +1,40 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import "./styles/ScifiTheme.css"; // Import the new theme
+import "./styles/ScifiTheme.css";
 import { 
   Terminal, 
   Activity, 
   Map, 
   Users, 
-  MessageSquare, 
   Cpu, 
   Radio, 
   ShieldAlert, 
-  Power 
+  Database,
+  ScrollText
 } from "lucide-react";
 
-// Import Components (We will wrap these or use them directly)
 import ChatPanel from "./components/ChatPanel";
 import WorldControls from "./components/WorldControls";
 import FactionUI from "./components/FactionUI";
 import PlayersTab from "./components/PlayersTab";
-// import NPCsTab from "./components/NPCsTab"; // We might handle this differently
-
+import NPCsTab from "./components/NPCsTab";
+import QuestsTab from "./components/QuestsTab";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:8001";
 const API = `${BACKEND_URL}/api`;
 
+const POTENTIAL_NPCS = [
+  { npc_id: "vera", name: "Vera", role: "Chief Security Officer", location: "Command Center", faction: "guards" },
+  { npc_id: "elena", name: "Elena", role: "Merchant", location: "Porto Cobre Market", faction: "traders" },
+  { npc_id: "marcus", name: "Marcus", role: "Blacksmith", location: "Porto Cobre Market", faction: "citizens" },
+  { npc_id: "silas_black", name: "Silas Black", role: "Cunning Broker", location: "Market District", faction: "traders" },
+  { npc_id: "guard", name: "Unit 734", role: "Security Guard", location: "Perimeter", faction: "guards" },
+  { npc_id: "merchant", name: "Local Trader", role: "Vendor", location: "Trade Hub", faction: "traders" },
+  { npc_id: "kai", name: "Kai", role: "Tech Specialist", location: "Engineering", faction: "citizens" },
+  { npc_id: "nora_north", name: "Nora North", role: "Scout", location: "Outpost 3", faction: "citizens" }
+];
+
 function App() {
-  // State
   const [activeTab, setActiveTab] = useState("chat");
   const [selectedNPC, setSelectedNPC] = useState("vera");
   const [messages, setMessages] = useState([]);
@@ -33,20 +42,19 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [activeNPCs, setActiveNPCs] = useState([]);
   
-  // World State
   const [worldStatus, setWorldStatus] = useState(null);
   const [worldEvents, setWorldEvents] = useState([]);
   const [timeScale, setTimeScale] = useState(24);
   const [simulationRunning, setSimulationRunning] = useState(false);
 
-  // Faction/Territory State
   const [factionDetails, setFactionDetails] = useState(null);
   const [territoryControl, setTerritoryControl] = useState(null);
   const [factionEvents, setFactionEvents] = useState([]);
   const [battleHistory, setBattleHistory] = useState([]);
   const [tradeRoutes, setTradeRoutes] = useState([]);
 
-  // Player State
+  const [quests, setQuests] = useState([]);
+
   const [currentUser] = useState({
     user_id: "guest_player",
     username: "guest",
@@ -57,22 +65,17 @@ function App() {
   const [allPlayers, setAllPlayers] = useState([]);
   const [currentReputation, setCurrentReputation] = useState(0);
 
-  // NPC Detail State
   const [npcStatus, setNpcStatus] = useState(null);
   const [npcMemories, setNpcMemories] = useState([]);
 
   const messagesEndRef = useRef(null);
 
-  // --- Effects ---
-
-  // Initial Load
   useEffect(() => {
     fetchAllNPCs();
     fetchWorldStatus();
     fetchPlayerInfo();
   }, []);
 
-  // Update loop for world simulation (slow polling)
   useEffect(() => {
     if (activeTab === "world" || activeTab === "territory") {
       const interval = setInterval(() => {
@@ -87,7 +90,6 @@ function App() {
     scrollToBottom();
   }, [messages]);
 
-  // Tab switch data fetching
   useEffect(() => {
     if (activeTab === "territory") {
       fetchFactions();
@@ -96,10 +98,12 @@ function App() {
       fetchTradeRoutes();
     } else if (activeTab === "players") {
       fetchAllPlayers();
+    } else if (activeTab === "missions") {
+      fetchQuests();
+    } else if (activeTab === "agents") {
+      fetchAllNPCs();
     }
   }, [activeTab]);
-
-  // --- API Functions ---
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -111,6 +115,32 @@ function App() {
       setActiveNPCs(response.data.npcs || []);
     } catch (e) {
       console.error("NPC List Error", e);
+    }
+  };
+
+  const initializeNPC = async (id) => {
+    try {
+      setLoading(true);
+      // Construct the persona file name logic if needed, 
+      // but the backend default map handles common ones.
+      // For specific new ones, we might need to update backend or pass file param.
+      let personaFile = null;
+      if (id === "elena") personaFile = "elena_v1.json";
+      if (id === "marcus") personaFile = "marcus_v1.json";
+      if (id === "silas_black") personaFile = "silas_black_v1.json";
+      if (id === "nora_north") personaFile = "nora_north_v1.json";
+
+      const payload = { npc_id: id };
+      if (personaFile) payload.persona_file = personaFile;
+
+      await axios.post(`${API}/npc/init`, payload);
+      await fetchAllNPCs();
+    } catch (e) { 
+      console.error("Init Error", e); 
+      // Force refresh anyway to see if it worked
+      fetchAllNPCs();
+    } finally {
+        setLoading(false);
     }
   };
 
@@ -148,14 +178,23 @@ function App() {
     } catch (e) { console.error(e); }
   };
 
-  // Faction methods
+  const fetchQuests = async () => {
+      try {
+          const res = await axios.get(`${API}/quests`);
+          setQuests(res.data.quests || []);
+      } catch (e) {
+          console.error("Fetch Quests Error", e);
+          setQuests([{quest_id: "q1", title: "Scan Sector 7", difficulty: 0.3, quest_giver: "Vera", quest_type: "scout", description: "Locate resource cache in sector 7 ruins.", reward: {type: "credits", value: 500}}]);
+      }
+  };
+
   const fetchFactions = async () => {
       try {
         const response = await axios.get(`${API}/factions/status`);
         setFactionDetails(response.data.factions || {});
       } catch (e) { console.error(e); }
   };
-  const fetchTerritories = async () => setTerritories(null); // Placeholder
+  const fetchTerritories = async () => setTerritories(null); 
   const fetchTerritoryControl = async () => {
       try {
           const res = await axios.get(`${API}/territory/control`);
@@ -187,14 +226,13 @@ function App() {
       } catch (e) { console.error(e); }
   };
 
-  // Actions
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
     setLoading(true);
     const userMsg = { type: "player", content: inputValue };
     setMessages(prev => [...prev, userMsg]);
     const currentInput = inputValue;
-    setInputValue(""); // Clear early
+    setInputValue(""); 
 
     try {
       const response = await axios.post(`${API}/npc/action`, {
@@ -213,7 +251,6 @@ function App() {
       };
       setMessages(prev => [...prev, npcMsg]);
       
-      // Update side effects
       fetchNPCStatus();
       fetchPlayerInfo();
 
@@ -226,11 +263,9 @@ function App() {
 
   const switchNPC = (id) => {
       setSelectedNPC(id);
-      setMessages([]); // Clear chat for new NPC
+      setMessages([]); 
       setNpcStatus(null);
   };
-
-  // --- Render Helpers ---
 
   const renderContent = () => {
     switch (activeTab) {
@@ -308,6 +343,30 @@ function App() {
                 />
             </div>
         );
+      case "agents":
+        return (
+            <div className="panel-content">
+                <NPCsTab 
+                    activeNPCs={activeNPCs}
+                    allNPCs={POTENTIAL_NPCS}
+                    fetchAllNPCs={fetchAllNPCs}
+                    initializeNPC={initializeNPC}
+                    selectedNPC={selectedNPC}
+                    loading={loading}
+                    setActiveTab={setActiveTab}
+                    switchNPC={(id) => { switchNPC(id); setActiveTab("chat"); }}
+                />
+            </div>
+        );
+       case "missions":
+        return (
+            <div className="panel-content">
+               <QuestsTab 
+                  quests={quests}
+                  fetchQuests={fetchQuests}
+               />
+            </div>
+        );
       default: 
         return <div className="panel-content">MODULE UNREACHABLE</div>;
     }
@@ -315,7 +374,6 @@ function App() {
 
   return (
     <div className="scifi-container scanlines">
-      {/* HEADER */}
       <header className="scifi-header">
         <div className="scifi-logo">
           <span className="scifi-logo__text">NEXUS<span style={{color: "#fff"}}>BRAIN</span></span>
@@ -335,10 +393,7 @@ function App() {
         </div>
       </header>
 
-      {/* MAIN GRID */}
       <main className="scifi-main">
-        
-        {/* LEFT SIDEBAR (NAV) */}
         <nav className="scifi-nav scifi-panel">
           <div className="panel-header"><MenuIcon icon={Terminal} /> MODULES</div>
           <button className={`nav-btn ${activeTab === "chat" ? "active" : ""}`} onClick={() => setActiveTab("chat")}>
@@ -353,8 +408,14 @@ function App() {
           <button className={`nav-btn ${activeTab === "players" ? "active" : ""}`} onClick={() => setActiveTab("players")}>
             <Users size={16} /> SUBJECTS
           </button>
+          <button className={`nav-btn ${activeTab === "agents" ? "active" : ""}`} onClick={() => setActiveTab("agents")}>
+            <Database size={16} /> AGENTS DB
+          </button>
+          <button className={`nav-btn ${activeTab === "missions" ? "active" : ""}`} onClick={() => setActiveTab("missions")}>
+             <ScrollText size={16} /> MISSIONS
+          </button>
 
-          <div className="panel-header" style={{marginTop: 20}}><MenuIcon icon={Cpu} /> AGENTS</div>
+          <div className="panel-header" style={{marginTop: 20}}><MenuIcon icon={Cpu} /> QUICK LINK</div>
           {activeNPCs.map(npc => (
             <button 
                 key={npc.npc_id} 
@@ -368,7 +429,6 @@ function App() {
           {activeNPCs.length === 0 && <div style={{padding: 15, color: "#555"}}>SCANNING...</div>}
         </nav>
 
-        {/* CENTER CONTENT */}
         <div className="scifi-panel">
            <div className="panel-header">
               <span>ACTIVE MODULE // {activeTab.toUpperCase()}</span>
@@ -377,7 +437,6 @@ function App() {
            {renderContent()}
         </div>
 
-        {/* RIGHT INFO PANEL (Optional Dynamic Info) */}
         <aside className="scifi-panel info-panel">
            <div className="panel-header"><MenuIcon icon={ShieldAlert} /> DIAGNOSTICS</div>
            <div className="panel-content">
@@ -411,7 +470,6 @@ function App() {
 
       </main>
 
-      {/* FOOTER */}
       <footer style={{
          borderTop: "var(--scifi-border)", 
          background: "#020202", 
@@ -429,7 +487,6 @@ function App() {
   );
 }
 
-// Helpers
 const MenuIcon = ({icon: Icon}) => <Icon size={14} style={{marginRight: 8, display: "inline-block", verticalAlign: "middle"}} />;
 
 const DetailRow = ({label, value}) => (

@@ -543,3 +543,72 @@ input[type="range"] {
   font-size: 0.8rem;
 }
 
+
+/* --- NPC CARD OVERRIDES --- */
+.npcs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 15px;
+}
+.npc-card {
+  background: rgba(0, 20, 20, 0.3);
+  border: 1px solid var(--scifi-border);
+  padding: 15px;
+  transition: all 0.2s;
+}
+.npc-card:hover {
+  background: rgba(0, 40, 50, 0.4);
+  box-shadow: 0 0 8px var(--scifi-primary);
+}
+.npc-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+}
+.npc-card-header h3 {
+  margin: 0;
+  color: var(--scifi-primary);
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+.mood-badge {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border: 1px solid var(--scifi-text-dim);
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+.npc-role {
+    color: var(--scifi-secondary);
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin: 5px 0;
+}
+.npc-location {
+    color: var(--scifi-text-dim);
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+}
+.npc-card-actions {
+    display: flex;
+    gap: 8px;
+}
+.card-btn {
+    flex: 1;
+    background: transparent;
+    border: 1px solid var(--scifi-border);
+    color: var(--scifi-text);
+    padding: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    transition: all 0.2s;
+}
+.card-btn:hover {
+    background: var(--scifi-primary);
+    color: #000;
+}
+
