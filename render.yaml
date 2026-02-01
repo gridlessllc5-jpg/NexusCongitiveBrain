@@ -45,11 +45,10 @@ services:
       - key: DB_NAME
         value: fractured_survival
 
-  # Frontend Dashboard (React)
+  # Frontend Dashboard (React Static Site)
   - type: web
     name: fractured-survival-dashboard
     runtime: static
-    plan: free
     rootDir: frontend
     buildCommand: npm install && npm run build
     staticPublishPath: build
