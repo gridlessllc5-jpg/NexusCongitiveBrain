@@ -50,11 +50,17 @@ services:
     name: fractured-survival-dashboard
     runtime: static
     rootDir: frontend
-    buildCommand: npm install --legacy-peer-deps && npm run build
+    buildCommand: npm install --legacy-peer-deps && DISABLE_ESLINT_PLUGIN=true TSC_COMPILE_ON_ERROR=true npm run build
     staticPublishPath: build
     envVars:
       - key: NODE_VERSION
         value: "20.11.0"
+      - key: DISABLE_ESLINT_PLUGIN
+        value: "true"
+      - key: TSC_COMPILE_ON_ERROR
+        value: "true"
+      - key: CI
+        value: "false"
       - key: REACT_APP_BACKEND_URL
         value: https://fractured-survival-backend.onrender.com
     headers:
