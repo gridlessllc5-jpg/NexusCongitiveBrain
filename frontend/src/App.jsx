@@ -59,7 +59,7 @@ function App() {
 
   // NPC Detail State
   const [npcStatus, setNpcStatus] = useState(null);
-  const [, setNpcMemories] = useState([]);
+  const [npcMemories, setNpcMemories] = useState([]);
 
   const messagesEndRef = useRef(null);
 
@@ -236,38 +236,23 @@ function App() {
     switch (activeTab) {
       case "chat":
         return (
-          <div className="chat-interface">
-             <div className="chat-log panel-content">
-                {messages.length === 0 && (
-                  <div className="message system">
-                    SYSTEM: NEURAL LINK ESTABLISHED WITH {selectedNPC.toUpperCase()}. AWAITING INPUT.
-                  </div>
-                )}
-                {messages.map((msg, idx) => (
-                  <div key={idx} className={`message ${msg.type}`}>
-                    <div className="msg-content">{msg.content}</div>
-                    {msg.inner_thoughts && (
-                      <div className="npc-thought">&gt;&gt; THOUGHT: {msg.inner_thoughts}</div>
-                    )}
-                  </div>
-                ))}
-                <div ref={messagesEndRef} />
-             </div>
-             <div className="input-area">
-                <input 
-                  type="text" 
-                  className="scifi-input" 
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
-                  placeholder={`TRANSMIT TO ${selectedNPC.toUpperCase()}...`}
-                  disabled={loading}
-                  autoFocus
-                />
-                <button className="scifi-btn" onClick={handleSendMessage} disabled={loading}>
-                  {loading ? "SENDING..." : "SEND"}
-                </button>
-             </div>
+          <div className="chat-interface panel-content">
+             <ChatPanel 
+                selectedNPC={selectedNPC}
+                npcStatus={npcStatus}
+                messages={messages}
+                inputValue={inputValue}
+                setInputValue={setInputValue}
+                loading={loading}
+                sendAction={handleSendMessage}
+                currentReputation={currentReputation}
+                topicsExtracted={[]} 
+                npcMemories={npcMemories}
+                messagesEndRef={messagesEndRef}
+                playerId={playerId}
+                playerName={currentUser.player_name}
+                API={API}
+             />
           </div>
         );
       case "world":

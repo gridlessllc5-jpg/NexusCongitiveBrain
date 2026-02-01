@@ -387,3 +387,159 @@ input[type="range"] {
   text-shadow: 0 0 5px var(--scifi-alert);
 }
 
+
+/* --- CHAT PANEL OVERRIDES --- */
+.messages-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 15px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+  font-size: 0.75rem;
+  color: var(--scifi-text-dim);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.npc-name {
+  color: var(--scifi-primary);
+  font-weight: bold;
+}
+
+.player-name {
+  color: var(--scifi-success);
+  font-weight: bold;
+}
+
+.message-content {
+  font-size: 1rem;
+}
+
+.inner-thoughts {
+  margin-top: 8px;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border-left: 2px solid var(--scifi-text-dim);
+  color: var(--scifi-text-dim);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+.play-voice-btn {
+  background: transparent;
+  border: 1px solid var(--scifi-primary);
+  color: var(--scifi-primary);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: all 0.2s;
+}
+.play-voice-btn:hover {
+  background: var(--scifi-primary);
+  color: #000;
+  box-shadow: 0 0 10px var(--scifi-primary);
+}
+
+.emotional-shift {
+  font-size: 0.7rem;
+  color: var(--scifi-warning);
+  text-align: right;
+  margin-top: 5px;
+}
+
+.input-container {
+  border-top: var(--scifi-border);
+  padding: 15px;
+  background: rgba(0, 10, 20, 0.9);
+}
+
+.input-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.mic-btn {
+  background: transparent;
+  border: 1px solid var(--scifi-text-dim);
+  color: var(--scifi-text-dim);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.mic-btn:hover {
+  border-color: var(--scifi-primary);
+  color: var(--scifi-primary);
+}
+
+.mic-btn.recording {
+  border-color: var(--scifi-alert);
+  color: var(--scifi-alert);
+  animation: pulse 1s infinite;
+  box-shadow: 0 0 10px var(--scifi-alert);
+}
+
+.input-container textarea {
+  flex: 1;
+  background: rgba(0, 20, 30, 0.5);
+  border: 1px solid var(--scifi-border);
+  color: var(--scifi-text);
+  font-family: var(--scifi-font);
+  padding: 10px;
+  resize: none;
+  height: 40px; /* Base height */
+}
+
+.input-container textarea:focus {
+  outline: none;
+  border-color: var(--scifi-primary);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+}
+
+.input-container button[data-testid="send-btn"] {
+  height: 40px;
+  background: var(--scifi-secondary);
+  border: none;
+  color: white;
+  padding: 0 20px;
+  font-family: var(--scifi-font);
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+}
+.input-container button[data-testid="send-btn"]:hover {
+  background: var(--scifi-primary);
+  color: black;
+}
+
+.mic-error {
+  background: rgba(255, 42, 42, 0.1);
+  border: 1px solid var(--scifi-alert);
+  color: var(--scifi-alert);
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
