@@ -1,0 +1,389 @@
+:root {
+  --scifi-bg-color: #050505;
+  --scifi-panel-bg: rgba(10, 15, 20, 0.85);
+  --scifi-primary: #00f0ff; /* Cyberpunk Cyan */
+  --scifi-secondary: #0077ff; /* Deep Blue */
+  --scifi-alert: #ff2a2a; /* Critical Red */
+  --scifi-warning: #ffcc00; /* Amber */
+  --scifi-success: #00ff41; /* Hacker Green */
+  --scifi-text: #e0faff;
+  --scifi-text-dim: #5c7c8a;
+  --scifi-border: 1px solid rgba(0, 240, 255, 0.3);
+  --scifi-glow: 0 0 10px rgba(0, 240, 255, 0.2);
+  --scifi-font: 'Consolas', 'Monaco', 'Courier New', monospace;
+  --scifi-scanline: rgba(0, 0, 0, 0.5);
+}
+
+body {
+  background-color: var(--scifi-bg-color);
+  background-image: 
+    linear-gradient(rgba(0, 20, 40, 0.9), rgba(0, 5, 10, 0.95)),
+    url('/assets/grid-bg.png'); /* Fallback or texture */
+  color: var(--scifi-text);
+  font-family: var(--scifi-font);
+  margin: 0;
+  overflow: hidden; /* App handles scrolling */
+}
+
+/* Scanline Effect */
+.scanlines::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 9999;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+
+/* Common Components */
+.scifi-container {
+  display: grid;
+  grid-template-rows: 60px 1fr 40px;
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+}
+
+/* Header */
+.scifi-header {
+  border-bottom: var(--scifi-border);
+  background: rgba(0, 10, 20, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  box-shadow: 0 5px 20px rgba(0, 240, 255, 0.1);
+}
+
+.scifi-logo__text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--scifi-primary);
+  text-shadow: 0 0 5px var(--scifi-primary);
+}
+
+.scifi-status-indicator {
+  display: flex;
+  gap: 15px;
+  font-size: 0.8rem;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--scifi-text-dim);
+  box-shadow: 0 0 5px var(--scifi-text-dim);
+}
+
+.status-dot.online {
+  background-color: var(--scifi-success);
+  box-shadow: 0 0 8px var(--scifi-success);
+  animation: pulse 2s infinite;
+}
+
+/* Main Layout */
+.scifi-main {
+  display: grid;
+  grid-template-columns: 250px 1fr 300px; /* Sidebar, Content, InfoPanel */
+  gap: 10px;
+  padding: 10px;
+  overflow: hidden;
+}
+
+/* Panels */
+.scifi-panel {
+  background: var(--scifi-panel-bg);
+  border: var(--scifi-border);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  backdrop-filter: blur(5px);
+}
+
+.scifi-panel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-top: 2px solid var(--scifi-primary);
+  border-left: 2px solid var(--scifi-primary);
+  pointer-events: none;
+}
+
+.scifi-panel::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  border-bottom: 2px solid var(--scifi-primary);
+  border-right: 2px solid var(--scifi-primary);
+  pointer-events: none;
+}
+
+.panel-header {
+  background: rgba(0, 240, 255, 0.1);
+  padding: 10px;
+  border-bottom: var(--scifi-border);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 15px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scifi-primary) transparent;
+}
+
+.panel-content::-webkit-scrollbar {
+  width: 6px;
+}
+.panel-content::-webkit-scrollbar-thumb {
+  background: var(--scifi-primary);
+  border-radius: 3px;
+}
+
+/* Navigation (Sidebar) */
+.scifi-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.nav-btn {
+  background: transparent;
+  border: 1px solid rgba(0, 240, 255, 0.1);
+  color: var(--scifi-text-dim);
+  padding: 15px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: var(--scifi-font);
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+
+.nav-btn:hover {
+  background: rgba(0, 240, 255, 0.1);
+  color: var(--scifi-text);
+  border-color: var(--scifi-primary);
+  text-shadow: 0 0 8px var(--scifi-primary);
+}
+
+.nav-btn.active {
+  background: rgba(0, 240, 255, 0.2);
+  color: var(--scifi-primary);
+  border-color: var(--scifi-primary);
+  box-shadow: inset 5px 0 0 var(--scifi-primary);
+}
+
+/* Chat Interface */
+.chat-log {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.message {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-left: 3px solid transparent;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  animation: fadeIn 0.3s ease;
+}
+
+.message.player {
+  border-left-color: var(--scifi-success);
+  background: rgba(0, 255, 65, 0.05);
+  align-self: flex-end;
+  max-width: 80%;
+}
+
+.message.npc {
+  border-left-color: var(--scifi-primary);
+  background: rgba(0, 240, 255, 0.05);
+  align-self: flex-start;
+  max-width: 90%;
+}
+
+.message.system {
+  border-left-color: var(--scifi-warning);
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--scifi-warning);
+}
+
+.npc-thought {
+  font-size: 0.85rem;
+  color: var(--scifi-text-dim);
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  margin-top: 5px;
+  padding-top: 5px;
+  font-style: italic;
+}
+
+.input-area {
+  display: flex;
+  gap: 10px;
+  padding: 15px;
+  border-top: var(--scifi-border);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.scifi-input {
+  flex: 1;
+  background: rgba(0, 20, 30, 0.5);
+  border: 1px solid var(--scifi-text-dim);
+  padding: 10px;
+  color: var(--scifi-primary);
+  font-family: var(--scifi-font);
+}
+
+.scifi-input:focus {
+  outline: none;
+  border-color: var(--scifi-primary);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+}
+
+.scifi-btn {
+  background: var(--scifi-secondary);
+  border: none;
+  color: white;
+  padding: 0 20px;
+  cursor: pointer;
+  font-family: var(--scifi-font);
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+}
+
+.scifi-btn:hover {
+  background: var(--scifi-primary);
+  box-shadow: 0 0 15px var(--scifi-primary);
+  color: black;
+}
+
+/* Animations */
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .scifi-main {
+    grid-template-columns: 200px 1fr;
+  }
+  .info-panel {
+    display: none; /* Hide right panel on smaller screens for now */
+  }
+}
+
+/* --- COMPONENT OVERRIDES --- */
+
+/* Generic Panel Resets */
+.world-container, .factions-container, .players-container {
+  background: transparent !important;
+  color: var(--scifi-text) !important;
+  font-family: "Courier New", monospace !important;
+  padding: 10px;
+}
+
+/* Headers */
+.world-header h2, .factions-header h2, .players-header h2, 
+.world-controls h3, .faction-overview-section h3, .current-player-panel h3 {
+  color: var(--scifi-primary) !important;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-bottom: 1px solid var(--scifi-border);
+  padding-bottom: 5px;
+  font-size: 1.2rem;
+}
+
+/* Buttons */
+.control-btn, .refresh-btn, .apply-btn {
+  background: transparent !important;
+  border: 1px solid var(--scifi-primary) !important;
+  color: var(--scifi-primary) !important;
+  padding: 8px 16px;
+  text-transform: uppercase;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 0 5px var(--scifi-glow);
+}
+.control-btn:hover, .refresh-btn:hover, .apply-btn:hover {
+  background: var(--scifi-primary) !important;
+  color: #000 !important;
+}
+.control-btn:disabled {
+  border-color: #555 !important;
+  color: #555 !important;
+  box-shadow: none !important;
+}
+
+/* Inputs */
+input[type="text"], input[type="number"], .player-inputs input {
+  background: rgba(0, 0, 0, 0.7) !important;
+  border: 1px solid var(--scifi-border) !important;
+  color: var(--scifi-text) !important;
+  padding: 8px;
+  font-family: inherit;
+}
+input[type="range"] {
+  accent-color: var(--scifi-primary);
+}
+
+/* Cards & Grids */
+.faction-cards > div, .event-item, .world-grid > div, .players-grid > div {
+  background: rgba(0, 20, 20, 0.3) !important;
+  border: 1px solid var(--scifi-border) !important;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+/* Text Highlights */
+.simulation-status.running, .status-dot.online {
+  color: var(--scifi-success) !important;
+  text-shadow: 0 0 5px var(--scifi-success);
+}
+.simulation-status.stopped {
+  color: var(--scifi-alert) !important;
+  text-shadow: 0 0 5px var(--scifi-alert);
+}
+
