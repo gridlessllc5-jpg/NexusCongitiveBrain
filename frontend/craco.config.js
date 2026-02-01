@@ -45,6 +45,9 @@ const webpackConfig = {
   webpack: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
+      // Stub out ForkTsChecker to avoid ajv-keywords errors in schema-utils
+      'fork-ts-checker-webpack-plugin': path.resolve(__dirname, 'scripts/emptyForkTsChecker.js'),
+      'react-dev-utils/ForkTsCheckerWebpackPlugin': path.resolve(__dirname, 'scripts/emptyForkTsChecker.js'),
     },
     configure: (webpackConfig) => {
 
