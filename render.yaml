@@ -7,15 +7,14 @@ services:
     name: fractured-survival-npc
     runtime: python
     plan: free
-    buildCommand: |
-      cd npc_system && pip install -r requirements.txt
-    startCommand: |
-      cd npc_system && uvicorn npc_service:app --host 0.0.0.0 --port $PORT
+    rootDir: npc_system
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn npc_service:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHON_VERSION
         value: "3.11"
       - key: OPENAI_API_KEY
-        sync: false  # Set manually in Render dashboard
+        sync: false
       - key: ELEVENLABS_API_KEY
         sync: false
       - key: MONGO_URL
@@ -28,10 +27,9 @@ services:
     name: fractured-survival-backend
     runtime: python
     plan: free
-    buildCommand: |
-      cd backend && pip install -r requirements.txt
-    startCommand: |
-      cd backend && uvicorn server:app --host 0.0.0.0 --port $PORT
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn server:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHON_VERSION
         value: "3.11"
@@ -39,7 +37,7 @@ services:
         fromService:
           name: fractured-survival-npc
           type: web
-          property: hostport
+          property: host
       - key: OPENAI_API_KEY
         sync: false
       - key: MONGO_URL
