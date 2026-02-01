@@ -31,8 +31,14 @@ function App() {
   const messagesEndRef = useRef(null);
 
   // Authentication state
-  const [currentUser, setCurrentUser] = useState(null);
-  const [authLoading, setAuthLoading] = useState(true);
+  // const [currentUser, setCurrentUser] = useState(null);
+  // Bypass login for dev/demo
+  const [currentUser, setCurrentUser] = useState({
+    user_id: "guest_player",
+    username: "guest",
+    player_name: "Guest Admin"
+  });
+  const [authLoading, setAuthLoading] = useState(false);
 
   // Player state (now linked to auth)
   const [playerId, setPlayerId] = useState("guest_player");
