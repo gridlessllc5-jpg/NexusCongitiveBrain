@@ -64,7 +64,7 @@ def get_npc_base_url():
     """Returns the base URL for NPC service - uses embedded if available"""
     if NPC_SERVICE_EMBEDDED:
         return "http://localhost:8001/npc-direct"
-    return NPC_SERVICE_URL
+    return NPC_SERVICE_URL if NPC_SERVICE_URL.startswith("http") else f"http://{NPC_SERVICE_URL}"
 
 # Health check endpoint (required for Kubernetes)
 @app.get("/health")
